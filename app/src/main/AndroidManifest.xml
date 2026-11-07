@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Needed by the on-phone packet engine to re-send app traffic. PhoneWatch itself
+         never contacts any server, except the optional, manual "update tracker lists" button. -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
+    <!-- Scan tab: passive Bluetooth / WiFi / cell listening (location is used to tell if a device moves with you) -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.NEARBY_WIFI_DEVICES" />
+    <uses-permission android:name="android.permission.BLUETOOTH" android:maxSdkVersion="30" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" android:maxSdkVersion="30" />
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <!-- granted by the built-in helper on first connect, so it can turn Wireless debugging back on after a restart -->
+    <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS" tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <!-- Personal app: needs to see every installed app to name who is sending data -->
+    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" tools:ignore="QueryAllPackagesPermission" />
+    <!-- Optional: "last used" + app sizes on the Debloat screen (user grants in Settings) -->
+    <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS" tools:ignore="ProtectedPermissions" />
+
+    <uses-sdk tools:overrideLibrary="rikka.shizuku.api,rikka.shizuku.provider,rikka.shizuku.shared,rikka.shizuku.aidl" />
+
+    <application
+        android:name=".PhoneWatchApp"
+        android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher"
+        android:label="Phulax Android Tell Me"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.PhoneWatch"
+        android:resizeableActivity="true">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:configChanges="orientation|screenSize|screenLayout|smallestScreenSize|density|keyboardHidden"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name=".engine.PwVpnService"
+            android:exported="false"
+            android:foregroundServiceType="specialUse"
+            android:permission="android.permission.BIND_VPN_SERVICE">
+            <intent-filter>
+                <action android:name="android.net.VpnService" />
+            </intent-filter>
+            <property
+                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+                android:value="On-device firewall VPN that shows and blocks app trackers" />
+            <meta-data android:name="android.net.VpnService.SUPPORTS_ALWAYS_ON" android:value="true" />
+        </service>
+
+        <service
+            android:name=".scan.ScanService"
+            android:exported="false"
+            android:foregroundServiceType="location" />
+
+        <receiver android:name=".BootReceiver" android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+            </intent-filter>
+        </receiver>
+
+        <provider
+            android:name="rikka.shizuku.ShizukuProvider"
+            android:authorities="${applicationId}.shizuku"
+            android:enabled="true"
+            android:exported="true"
+            android:multiprocess="false"
+            android:permission="android.permission.INTERACT_ACROSS_USERS_FULL" />
+        <service
+            android:name="com.phonewatch.adb.AdbPairingService"
+            android:exported="false"
+            android:foregroundServiceType="shortService" />
+    </application>
+</manifest>

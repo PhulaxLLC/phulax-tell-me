@@ -1,0 +1,13 @@
+{
+  "Akamai": ["akamai.net", "akamaiedge.net", "akamaized.net", "akamaihd.net", "akamaitechnologies.com", "edgekey.net", "edgesuite.net"],
+  "Amazon": ["cloudfront.net", "amazonaws.com", "media-amazon.com", "ssl-images-amazon.com"],
+  "Cloudflare": ["cloudflare.com", "cloudflare.net", "cdnjs.cloudflare.com", "cloudflare-dns.com"],
+  "Fastly": ["fastly.net", "fastlylb.net", "fastly.com"],
+  "Google": ["googleusercontent.com", "ggpht.com", "gvt1.com", "gvt2.com", "googlevideo.com", "1e100.net", "android.com", "gstatic.com", "googleapis.com"],
+  "Microsoft": ["azureedge.net", "msecnd.net", "windows.net", "azurefd.net", "trafficmanager.net"],
+  "Meta (Facebook)": ["fbcdn.net", "cdninstagram.com", "whatsapp.net"],
+  "Edgio / Verizon": ["edgecastcdn.net", "llnwd.net", "systemcdn.net"],
+  "jsDelivr": ["jsdelivr.net"],
+  "Apple": ["apple.com", "icloud.com", "mzstatic.com", "aaplimg.com"],
+  "Samsung": ["samsung.com", "samsungcloud.com", "samsungapps.com", "samsungosp.com", "samsungdm.com", "samsungqbe.com"]
+}
