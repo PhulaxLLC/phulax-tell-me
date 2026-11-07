@@ -33,6 +33,9 @@ Design was also informed by TrackerControl (GPL-3.0, https://github.com/TrackerC
 | DuckDuckGo App Tracking Protection blocklist, Copyright 2022 Duck Duck Go, Inc., https://github.com/duckduckgo/tracker-blocklists | android-tds.json | CC BY-NC-SA 4.0 | Yes for this personal, non-commercial app, with attribution. Do not sell or commercially distribute an APK containing it. DuckDuckGo marks/logos are not used. |
 | Disconnect tracking protection list, Copyright 2010-2026 Disconnect, Inc., https://github.com/disconnectme/disconnect-tracking-protection | services.json | CC BY-NC-SA 4.0 | Same terms as above: personal, non-commercial, attributed. |
 | Exodus Privacy tracker database (ETIP), https://reports.exodus-privacy.eu.org/api/trackers | exodus-trackers.json | ODbL 1.0 (database), DbCL 1.0 (contents) | Yes, with attribution; a derived database would be shared under ODbL. |
+| AdGuard companiesdb, https://github.com/AdguardTeam/companiesdb | adguard-trackers.json, adguard-companies.json | CC BY-SA 4.0 (built on WhoTracks.Me data, CC BY 4.0) | Yes, with attribution; adapted versions shared under CC BY-SA 4.0. |
+| EasyPrivacy by The EasyList authors, https://easylist.to | easyprivacy.txt | GPL-3.0-or-later / CC BY-SA 3.0 | Yes, with attribution. |
+| HaGeZi DNS blocklists (Pro), https://github.com/hagezi/dns-blocklists | hagezi-pro.txt | GPL-3.0 | Yes, with attribution and source. |
 | Universal Android Debloater Next Generation package list, https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation | uad.json (trimmed from uad_lists.json: list, removal rating, description) | GPL-3.0 | Yes; GPL-compatible with this app. |
 | DuckDuckGo Tracker Radar owner map (build-data/generated/domain_map.json), Copyright 2020 Duck Duck Go, Inc., https://github.com/duckduckgo/tracker-radar | tr-owners.tsv (domain, owner name; trimmed) | CC BY-NC-SA 4.0 | Same terms as the DuckDuckGo list: personal, non-commercial, attributed. |
 | PhoneWatch CDN list (hand made from public knowledge) | cdn.json | GPL-3.0 (this project) | |
@@ -44,6 +47,6 @@ The original source files and their LICENSE files are kept in data-src/.
 
 ## Optional updates
 
-The "Update tracker lists" button (off by default) downloads the same three files directly from
-raw.githubusercontent.com (DuckDuckGo, Disconnect) and reports.exodus-privacy.eu.org (Exodus).
+The "Update tracker lists" button (off by default) downloads the same files directly from
+raw.githubusercontent.com (DuckDuckGo, Disconnect, AdGuard, HaGeZi), easylist.to (EasyPrivacy) and reports.exodus-privacy.eu.org (Exodus).
 No data about the phone is sent.

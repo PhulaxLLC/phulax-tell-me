@@ -20,8 +20,8 @@ android {
         applicationId = "com.phonewatch.app"
         minSdk = 29          // getConnectionOwnerUid (per-app attribution) needs Android 10+
         targetSdk = 34       // Galaxy Z Fold 4 runs Android 14 (API 34)
-        versionCode = 22
-        versionName = "2.0"
+        versionCode = 23
+        versionName = "2.1"
         ndk { abiFilters += listOf("arm64-v8a", "x86_64") }
         externalNativeBuild { cmake { arguments += "-DANDROID_PLATFORM=android-29" } }
     }

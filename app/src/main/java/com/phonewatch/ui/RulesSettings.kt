@@ -131,7 +131,7 @@ fun SettingsScreen(onTurnOn: () -> Unit) {
         item { Section("Tracker lists", sub = TrackerDb.sourceInfo) }
         item {
             InfoCard {
-                SwitchRow("Allow updating tracker lists", if (com.phonewatch.BuildConfig.PLAY) "Off by default. When on, the button below downloads a fresh list from Exodus Privacy. Nothing about you is sent." else "Off by default. When on, the button below downloads fresh lists from DuckDuckGo, Disconnect and Exodus Privacy. Nothing about you is sent.", Prefs.allowListUpdates) { Prefs.allowListUpdates = it }
+                SwitchRow("Allow updating tracker lists", if (com.phonewatch.BuildConfig.PLAY) "Off by default. When on, the button below downloads fresh lists from Exodus Privacy, AdGuard, EasyPrivacy and HaGeZi. Nothing about you is sent." else "Off by default. When on, the button below downloads fresh lists from DuckDuckGo, Disconnect, Exodus Privacy, AdGuard, EasyPrivacy and HaGeZi. Nothing about you is sent.", Prefs.allowListUpdates) { Prefs.allowListUpdates = it }
                 Button(enabled = Prefs.allowListUpdates && !updating, onClick = {
                     updating = true
                     scope.launch { updateMsg = withContext(Dispatchers.IO) { ListUpdater.update(ctx) }; updating = false }
@@ -145,7 +145,7 @@ fun SettingsScreen(onTurnOn: () -> Unit) {
         item {
             InfoCard {
                 Text("Phulax Android Tell Me ${com.phonewatch.BuildConfig.VERSION_NAME} by Phulax LLC", style = MaterialTheme.typography.titleMedium)
-                Text(if (com.phonewatch.BuildConfig.PLAY) "Free software under GPL-3.0 (source: see the store listing). Packet engine from NetGuard by Marcel Bokhorst (GPL-3.0). Tracker data: Exodus Privacy (ODbL). Debloat ratings: Universal Android Debloater Next Generation (GPL-3.0). IP Geolocation by DB-IP (db-ip.com, CC BY 4.0). Helper adapted from Shizuku (Apache-2.0)." else "Packet engine from NetGuard by Marcel Bokhorst (GPL-3.0). Tracker data: DuckDuckGo, Disconnect (CC BY-NC-SA 4.0), Exodus Privacy (ODbL). Debloat ratings: Universal Android Debloater Next Generation (GPL-3.0). IP Geolocation by DB-IP (db-ip.com, CC BY 4.0). Deep Inspect uses Bouncy Castle (MIT), SQLCipher (BSD), Twitter HPACK (Apache-2.0), Brotli (MIT).", style = MaterialTheme.typography.bodySmall)
+                Text(if (com.phonewatch.BuildConfig.PLAY) "Free software under GPL-3.0 (source: see the store listing). Packet engine from NetGuard by Marcel Bokhorst (GPL-3.0). Tracker data: Exodus Privacy (ODbL), AdGuard companiesdb (CC BY-SA 4.0), EasyPrivacy by The EasyList authors (GPL-3.0), HaGeZi DNS blocklists (GPL-3.0). Debloat ratings: Universal Android Debloater Next Generation (GPL-3.0). IP Geolocation by DB-IP (db-ip.com, CC BY 4.0). Helper adapted from Shizuku (Apache-2.0)." else "Packet engine from NetGuard by Marcel Bokhorst (GPL-3.0). Tracker data: DuckDuckGo, Disconnect (CC BY-NC-SA 4.0), Exodus Privacy (ODbL), AdGuard companiesdb (CC BY-SA 4.0), EasyPrivacy (GPL-3.0), HaGeZi (GPL-3.0). Debloat ratings: Universal Android Debloater Next Generation (GPL-3.0). IP Geolocation by DB-IP (db-ip.com, CC BY 4.0). Deep Inspect uses Bouncy Castle (MIT), SQLCipher (BSD), Twitter HPACK (Apache-2.0), Brotli (MIT).", style = MaterialTheme.typography.bodySmall)
                 TextButton(onClick = { showLicenses = true }) { Text("Licenses and credits") }
             }
         }

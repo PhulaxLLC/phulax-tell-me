@@ -187,7 +187,7 @@ fun CompanyDetailScreen(name: String, open: (Detail) -> Unit) {
                 Muted("Blocking can break apps that need this company (for example logins or maps).", MaterialTheme.typography.bodySmall)
             }
         }
-        co?.about?.let { item { InfoCard { Text("About", style = MaterialTheme.typography.titleMedium); Text(it, style = MaterialTheme.typography.bodyMedium); Muted("Source: Exodus Privacy", MaterialTheme.typography.bodySmall) } } }
+        co?.about?.let { item { InfoCard { Text("About", style = MaterialTheme.typography.titleMedium); Text(it, style = MaterialTheme.typography.bodyMedium); Muted("Source: ${co.aboutSource ?: "Exodus Privacy"}", MaterialTheme.typography.bodySmall) } } }
         if (co != null && co.signals.isNotEmpty()) item {
             InfoCard {
                 Text("Data its SDKs are documented to collect", style = MaterialTheme.typography.titleMedium)
