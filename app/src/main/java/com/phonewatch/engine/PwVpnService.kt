@@ -194,6 +194,17 @@ class PwVpnService : VpnService() {
         stopSelf()
     }
 
+    override fun onTaskRemoved(rootIntent: Intent?) {
+        // Samsung stops the service and kills the process when the app is swiped from Recents.
+        // Ask the system to start us again a moment later if the user still wants protection.
+        if (Prefs.vpnWanted) {
+            val pi = PendingIntent.getForegroundService(this, 1, Intent(this, PwVpnService::class.java).setAction(ACTION_START), PendingIntent.FLAG_IMMUTABLE)
+            getSystemService(android.app.AlarmManager::class.java)
+                .setAndAllowWhileIdle(android.app.AlarmManager.ELAPSED_REALTIME_WAKEUP, android.os.SystemClock.elapsedRealtime() + 5000, pi)
+        }
+        super.onTaskRemoved(rootIntent)
+    }
+
     override fun onRevoke() {
         // Another VPN took over, or the user turned us off in system settings
         Prefs.vpnWanted = false
